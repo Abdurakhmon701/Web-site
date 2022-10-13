@@ -3,15 +3,15 @@
 {% block content %}
 
 <div class="card-deck">
-  {% for i in mahsulotlar %}
+  {% for i in object_list %}
   <div class="card">
-    <img class="card-img-top" src="https://tesla-cdn.thron.com/delivery/public/image/tesla/5a7b3001-249f-4065-a330-4ea6a17ccf7b/bvlatuR/std/2560x1708/Model-3-Main-Hero-Desktop-LHD" alt="Card image cap">
+    <img class="card-img-top" src="{{i.rasmi.url }}" alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title"><a href="">{{i.sarlavhasi}}</a></h5>
+      <h5 class="card-title"><a href="{% url 'detail' i.pk %}">{{i.sarlavhasi}}</a></h5>
       <p class="card-text">{{i.tasnifi}}</p>
     </div>
     <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
+      <small class="text-muted">{{ i.vaqti | time:'H:i' }}/{{ i.vaqti | date:'d.m.y' }}</small>
     </div>
   </div>
   {% endfor %}
